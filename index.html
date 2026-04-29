@@ -71,17 +71,21 @@ font-weight:900;font-size:1.75rem;letter-spacing:-0.5px;
 color:#fff;cursor:pointer;
 white-space:nowrap;
 text-align:center;
+grid-column:2;
 }
 .nav-logo span{color:var(–accent)}
-.nav-links{display:flex;gap:28px;list-style:none;justify-content:flex-start;}
-.nav-right{display:flex;gap:10px;align-items:center;justify-content:flex-end;}
 .nav-links{
-display:flex;gap:32px;list-style:none;
-position:absolute;left:50%;transform:translateX(-50%);
+display:flex;gap:28px;list-style:none;
+justify-content:flex-start;
+grid-column:1;
 }
 .nav-links a{font-size:0.875rem;font-weight:500;color:var(–muted);text-decoration:none;transition:color 0.2s;cursor:pointer}
 .nav-links a:hover{color:#fff}
-.nav-right{display:flex;gap:10px;align-items:center}
+.nav-right{
+display:flex;gap:10px;align-items:center;
+justify-content:flex-end;
+grid-column:3;
+}
 .btn{
 display:inline-flex;align-items:center;justify-content:center;gap:8px;
 padding:10px 22px;border-radius:8px;border:none;cursor:pointer;
@@ -612,7 +616,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
   </ul>
   <div class="nav-right">
     <button class="btn btn-ghost" onclick="showPage('login')">Log In</button>
-    <button class="btn btn-primary" onclick="showPage('signup')">Start Free Trial</button>
+    <button class="btn btn-primary" onclick="showPage('signup')">Start Your Free Trial</button>
   </div>
 </nav>
 
@@ -636,7 +640,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
     </h1>
     <p class="hero-sub fade-up delay-2">Leadrli is your all-in-one workplace intelligence platform — whether you manage a team of 20 or just want to stay on top of your own emails, deadlines, and daily wins. Everyone deserves to show up at their best.</p>
     <div class="hero-actions fade-up delay-3">
-      <button class="btn btn-primary btn-xl" onclick="goToStripe('solo')">Start Free — No Credit Card</button>
+      <button class="btn btn-primary btn-xl" onclick="goToStripe('solo')">Start Your 14-Day Free Trial</button>
       <button class="btn btn-outline btn-xl" onclick="scrollTo('#how-section')">See How It Works</button>
     </div>
     <div class="hero-trust fade-up delay-4">
@@ -835,7 +839,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
       <li>Teams + Slack + Email alerts</li>
       <li>Auto 1:1 agendas</li>
     </ul>
-    <button class="plan-btn plan-btn-outline" onclick="goToStripe('solo')">Start Free Trial</button>
+    <button class="plan-btn plan-btn-outline" onclick="goToStripe('solo')">Start Your Free Trial</button>
   </div>
   <div class="plan popular">
     <div class="popular-tag">Most Popular</div>
@@ -851,7 +855,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
       <li>HRIS sync (BambooHR, Rippling)</li>
       <li>Priority email support</li>
     </ul>
-    <button class="plan-btn plan-btn-accent" onclick="goToStripe('team')">Start Free Trial</button>
+    <button class="plan-btn plan-btn-accent" onclick="goToStripe('team')">Start Your Free Trial</button>
   </div>
   <div class="plan">
     <div class="plan-tier">Company</div>
@@ -866,7 +870,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
       <li>Custom integrations</li>
       <li>Dedicated success manager</li>
     </ul>
-    <button class="plan-btn plan-btn-outline" onclick="goToStripe('company')">Start Free Trial</button>
+    <button class="plan-btn plan-btn-outline" onclick="goToStripe('company')">Start Your Free Trial</button>
   </div>
 </div>
 ```
@@ -911,11 +915,11 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
   <!-- CTA Banner -->
 
   <div class="cta-banner">
-    <div class="section-eyebrow" style="justify-content:center;display:flex">Start Today — Free for 14 Days</div>
+    <div class="section-eyebrow" style="justify-content:center;display:flex">Start Your 14-Day Free Trial</div>
     <h2>Better workdays start here.<br>For every single person.</h2>
     <p>Whether you manage a team or just want to finally feel on top of your work — Leadrli is built for you. Join thousands of people already working smarter, leading better, and actually enjoying their jobs.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-primary btn-xl" onclick="goToStripe('solo')">Start Free — No Credit Card</button>
+      <button class="btn btn-primary btn-xl" onclick="goToStripe('solo')">Start Your 14-Day Free Trial</button>
       <button class="btn btn-outline btn-xl" onclick="showPage('login')">Log In to Dashboard</button>
     </div>
   </div>
@@ -995,7 +999,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
       <div style="max-width:400px">
         <div class="auth-logo"><span>Lead</span>rli</div>
         <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:900;color:#fff;margin-bottom:12px">Join 2,400+ people working smarter every day.</div>
-        <div style="font-size:0.875rem;color:var(--muted);margin-bottom:44px;line-height:1.7">14-day free trial. No credit card required. Cancel anytime. Setup takes under 10 minutes.</div>
+        <div style="font-size:0.875rem;color:var(--muted);margin-bottom:44px;line-height:1.7">14-day free trial. Card required to start trial · Cancel anytime before day 14 and you will not be charged · Setup takes under 10 minutes.</div>
         <div class="auth-features">
           <div class="auth-feat"><div class="auth-feat-icon">⚡</div><div><h4>Instant Setup</h4><p>Connect your email and calendar in minutes. No IT ticket, no engineering help needed.</p></div></div>
           <div class="auth-feat"><div class="auth-feat-icon">🔒</div><div><h4>Enterprise Security</h4><p>SOC 2 Type II certified. Your data and your team's data is always private and encrypted.</p></div></div>
@@ -1006,7 +1010,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
     <div class="auth-right">
       <div class="auth-form">
         <div class="auth-logo" style="text-align:center"><span>Lead</span>rli</div>
-        <div class="auth-title">Start Free Trial</div>
+        <div class="auth-title">Start Your Free Trial</div>
         <div class="auth-sub">Already have an account? <a onclick="showPage('login')">Log in →</a></div>
 
 ```
@@ -1042,7 +1046,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
     <div class="form-group"><label class="form-label">Work Email</label><input class="form-input" type="email" placeholder="you@company.com" id="signup-email"></div>
     <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" placeholder="Create a strong password" id="signup-pass"></div>
     <button class="btn btn-primary" style="width:100%;padding:14px;font-size:1rem;border-radius:10px;margin-top:4px" onclick="handleSignup()">Create Free Account →</button>
-    <div style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.6">By signing up you agree to our <a style="color:var(--accent);cursor:pointer">Terms</a> and <a style="color:var(--accent);cursor:pointer">Privacy Policy</a>.<br>14-day free trial · No credit card required · Cancel anytime</div>
+    <div style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.6">By signing up you agree to our <a style="color:var(--accent);cursor:pointer">Terms</a> and <a style="color:var(--accent);cursor:pointer">Privacy Policy</a>.<br>14-day free trial · Card on file required · Cancel anytime before day 14 — no charge</div>
   </div>
 </div>
 ```
