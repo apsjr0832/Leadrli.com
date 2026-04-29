@@ -40,10 +40,12 @@ pointer-events:none;z-index:9999;opacity:0.4;
 
 /* ── NAVIGATION ── */
 .nav{
-position:fixed;top:0;left:0;right:0;z-index:500;
+position:fixed;top:0;left:0;right:0;
+z-index:500;
 display:flex;align-items:center;justify-content:space-between;
-padding:16px 56px;
-background:rgba(6,7,13,0.85);
+padding:0 56px;
+height:68px;
+background:rgba(6,7,13,0.92);
 backdrop-filter:blur(20px);
 border-bottom:1px solid var(–border);
 }
@@ -53,7 +55,10 @@ font-weight:900;font-size:1.35rem;letter-spacing:-0.5px;
 color:#fff;cursor:pointer;
 }
 .nav-logo span{color:var(–accent)}
-.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links{
+display:flex;gap:32px;list-style:none;
+position:absolute;left:50%;transform:translateX(-50%);
+}
 .nav-links a{font-size:0.875rem;font-weight:500;color:var(–muted);text-decoration:none;transition:color 0.2s;cursor:pointer}
 .nav-links a:hover{color:#fff}
 .nav-right{display:flex;gap:10px;align-items:center}
@@ -100,22 +105,24 @@ pointer-events:none;
 display:inline-flex;align-items:center;gap:8px;
 background:rgba(200,240,62,0.1);border:1px solid rgba(200,240,62,0.25);
 color:var(–accent);border-radius:100px;
-padding:6px 16px;font-size:0.78rem;font-weight:700;
-letter-spacing:0.06em;text-transform:uppercase;margin-bottom:28px;
+padding:7px 18px;font-size:0.8rem;font-weight:700;
+letter-spacing:0.06em;text-transform:uppercase;margin-bottom:32px;
+text-align:center;
 }
 .hero-badge::before{content:‘✦’;font-size:0.7rem}
 .hero h1{
 font-family:‘Cabinet Grotesk’,sans-serif;
-font-size:clamp(3rem,6.5vw,6rem);
-font-weight:900;line-height:1.0;letter-spacing:-2px;
-color:#fff;margin-bottom:24px;max-width:900px;
+font-size:clamp(3.5rem,7.5vw,7.5rem);
+font-weight:900;line-height:1.0;letter-spacing:-3px;
+color:#fff;margin-bottom:24px;max-width:1000px;
+text-align:center;
 }
 .hero h1 .accent{color:var(–accent)}
 .hero h1 .dim{color:rgba(255,255,255,0.3)}
 .hero-sub{
-font-size:clamp(1rem,1.5vw,1.15rem);font-weight:300;
-color:rgba(226,224,219,0.6);max-width:560px;line-height:1.75;
-margin-bottom:44px;
+font-size:clamp(1.05rem,1.6vw,1.25rem);font-weight:300;
+color:rgba(226,224,219,0.6);max-width:600px;line-height:1.75;
+margin-bottom:44px;text-align:center;
 }
 .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
 .hero-trust{
@@ -608,7 +615,7 @@ Stop letting your<br>team fall through<br>
 </h1>
 <p class="hero-sub fade-up delay-2">Leadrli is your AI management copilot — tracking follow-ups, 90-day reviews, unanswered emails, and team sentiment so you lead with intention every single day.</p>
 <div class="hero-actions fade-up delay-3">
-<button class="btn btn-primary btn-xl" onclick="showPage('signup')">Start Free — No Credit Card</button>
+<button class="btn btn-primary btn-xl" onclick="goToStripe('solo')">Start Free — No Credit Card</button>
 <button class="btn btn-outline btn-xl" onclick="scrollTo('#how-section')">See How It Works</button>
 </div>
 <div class="hero-trust fade-up delay-4">
@@ -770,7 +777,7 @@ Stop letting your<br>team fall through<br>
 <li>Teams + Slack + Email alerts</li>
 <li>Auto 1:1 agendas</li>
 </ul>
-<button class="plan-btn plan-btn-outline" onclick="showSignup('Solo','49')">Start Free Trial</button>
+<button class="plan-btn plan-btn-outline" onclick="goToStripe('solo')">Start Free Trial</button>
 </div>
 <div class="plan popular">
 <div class="popular-tag">Most Popular</div>
@@ -786,7 +793,7 @@ Stop letting your<br>team fall through<br>
 <li>HRIS sync (BambooHR, Rippling)</li>
 <li>Priority email support</li>
 </ul>
-<button class="plan-btn plan-btn-accent" onclick="showSignup('Team','149')">Start Free Trial</button>
+<button class="plan-btn plan-btn-accent" onclick="goToStripe('team')">Start Free Trial</button>
 </div>
 <div class="plan">
 <div class="plan-tier">Company</div>
@@ -801,7 +808,7 @@ Stop letting your<br>team fall through<br>
 <li>Custom integrations</li>
 <li>Dedicated success manager</li>
 </ul>
-<button class="plan-btn plan-btn-outline" onclick="showSignup('Company','499')">Start Free Trial</button>
+<button class="plan-btn plan-btn-outline" onclick="goToStripe('company')">Start Free Trial</button>
 </div>
 </div>
 ```
@@ -850,7 +857,7 @@ Stop letting your<br>team fall through<br>
 <h2>Your team deserves a manager<br>who never misses a beat.</h2>
 <p>Join thousands of managers using Leadrli to show up better for their teams — every single day. Free for 14 days, no card needed.</p>
 <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-<button class="btn btn-primary btn-xl" onclick="showPage('signup')">Start Free Trial</button>
+<button class="btn btn-primary btn-xl" onclick="goToStripe('solo')">Start Free Trial</button>
 <button class="btn btn-outline btn-xl" onclick="showPage('login')">Log In to Dashboard</button>
 </div>
 </div>
@@ -1031,4 +1038,5 @@ Sign Up with Google
 <div class="agrid4">
 <div class="stat-card"><div class="stat-icon" style="background:rgba(62,139,240,0.12)">👥</div><div><div class="stat-num" id="stat-team">6</div><div class="stat-lbl">Team Members</div></div></div>
 <div class="stat-card"><div class="stat-icon" style="background:rgba(232,80,10,0.12)">🔔</div><div><div class="stat-num" style="color:#e8500a" id="stat-alerts">3</div><div class="stat-lbl">Alerts Today</div></div></div>
-<div class="stat-card"><div class="stat-icon" style="background:rgba(200,240,62,0.12)">📋</div><div><div class="stat-num" style="color:var(--accent)" id="stat-actions">5</div><div class="stat-lbl">Open Actions</div></div></div>
+<div class="stat-card"><div class="stat-icon" style=
+...
