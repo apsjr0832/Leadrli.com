@@ -641,7 +641,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
     </h1>
     <p class="hero-sub fade-up delay-2">Leadrli is your all-in-one workplace intelligence platform — whether you manage a team of 20 or just want to stay on top of your own emails, deadlines, and daily wins. Everyone deserves to show up at their best.</p>
     <div class="hero-actions fade-up delay-3">
-      <button class="btn btn-primary btn-xl" onclick="goToStripe('solo')">Start Your 14-Day Free Trial</button>
+      <button class="btn btn-primary btn-xl" onclick="showPage('signup')">Start Your 14-Day Free Trial</button>
       <button class="btn btn-outline btn-xl" onclick="scrollToSection('#how-section')">See How It Works</button>
     </div>
     <div class="hero-trust fade-up delay-4">
@@ -920,7 +920,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
     <h2>Better workdays start here.<br>For every single person.</h2>
     <p>Whether you manage a team or just want to finally feel on top of your work — Leadrli is built for you. Join thousands of people already working smarter, leading better, and actually enjoying their jobs.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-primary btn-xl" onclick="goToStripe('solo')">Start Your 14-Day Free Trial</button>
+      <button class="btn btn-primary btn-xl" onclick="showPage('signup')">Start Your 14-Day Free Trial</button>
       <button class="btn btn-outline btn-xl" onclick="showPage('login')">Log In to Dashboard</button>
     </div>
   </div>
@@ -1125,7 +1125,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
     </div>
     <div class="form-group"><label class="form-label">Work Email</label><input class="form-input" type="email" placeholder="you@company.com" id="signup-email"></div>
     <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" placeholder="Create a strong password" id="signup-pass"></div>
-    <button class="btn btn-primary" style="width:100%;padding:14px;font-size:1rem;border-radius:10px;margin-top:4px" onclick="handleSignup()">Create Free Account →</button>
+    <button class="btn btn-primary" style="width:100%;padding:14px;font-size:1rem;border-radius:10px;margin-top:4px" onclick="handleSignup()">Continue to Checkout →</button>
     <div style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.6">By signing up you agree to our <a style="color:var(--accent);cursor:pointer">Terms</a> and <a style="color:var(--accent);cursor:pointer">Privacy Policy</a>.<br>14-day free trial · Card on file required · Cancel anytime before day 14 — no charge</div>
   </div>
 </div>
@@ -2079,12 +2079,21 @@ function showAppTab(tabName, el) {
 
 // ── AUTH ────────────────────────────────────────────────────────────────────
 function handleSocialLogin(provider) {
-  showToast(`Connecting with ${provider}...`);
-  setTimeout(() => {
-    currentUser = { name: "Alex Williams", first: "Alex", plan: selectedPlan };
-    showPage('app');
-    showToast('Welcome to Leadrli! 🎉');
-  }, 1000);
+  const signupPage = document.getElementById('signup');
+  if (signupPage && signupPage.classList.contains('active')) {
+    // On signup page — go directly to Stripe
+    const plan = selectedPlan.toLowerCase();
+    const link = stripeLinks[currentBilling][plan];
+    if (link) window.location.href = link;
+  } else {
+    // On login page — go to dashboard
+    showToast(`Signing in with ${provider}...`);
+    setTimeout(() => {
+      currentUser = { name: "Alex Williams", first: "Alex", plan: selectedPlan };
+      showPage('app');
+      showToast('Welcome back! 👋');
+    }, 1000);
+  }
 }
 
 function handleLogin() {
@@ -2098,9 +2107,14 @@ function handleSignup() {
   const fname = document.getElementById('signup-fname').value;
   const email = document.getElementById('signup-email').value;
   if (!fname || !email) { showToast('Please fill in all fields ⚠️', '#e8500a'); return; }
-  currentUser = { name: fname + ' ' + (document.getElementById('signup-lname').value || ''), first: fname, plan: selectedPlan };
-  showToast('Creating your account...');
-  setTimeout(() => { showPage('app'); showToast(`Welcome to Leadrli, ${fname}! 🎉`); }, 900);
+  // Go directly to Stripe — no setTimeout so browser doesn't block popup
+  const plan = selectedPlan.toLowerCase();
+  const link = stripeLinks[currentBilling][plan];
+  if (link) {
+    window.location.href = link;
+  } else {
+    showToast('Something went wrong — please try again ⚠️', '#e8500a');
+  }
 }
 
 function showSignup(plan, price) {
@@ -2552,7 +2566,7 @@ let currentBilling = 'monthly';
 
 function goToStripe(plan) {
   const link = stripeLinks[currentBilling][plan];
-  window.open(link, '_blank');
+  if (link) window.location.href = link;
 }
 
 // ── ROLE SWITCHER ─────────────────────────────────────────────────────────────
