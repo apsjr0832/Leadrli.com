@@ -67,7 +67,7 @@ transition:background 0.4s ease;
 }
 .nav-logo{
 font-family:‘Plus Jakarta Sans’,sans-serif;
-font-weight:900;font-size:1.75rem;letter-spacing:-0.5px;
+font-weight:900;font-size:2rem;letter-spacing:-0.5px;
 color:#fff;cursor:pointer;
 white-space:nowrap;
 text-align:center;
@@ -79,7 +79,7 @@ display:flex;gap:28px;list-style:none;
 justify-content:flex-start;
 grid-column:1;
 }
-.nav-links a{font-size:0.875rem;font-weight:500;color:var(–muted);text-decoration:none;transition:color 0.2s;cursor:pointer}
+.nav-links a{font-size:0.875rem;font-weight:600;color:rgba(255,255,255,0.75);text-decoration:none;transition:color 0.2s;cursor:pointer}
 .nav-links a:hover{color:#fff}
 .nav-right{
 display:flex;gap:10px;align-items:center;
@@ -92,8 +92,8 @@ padding:10px 22px;border-radius:8px;border:none;cursor:pointer;
 font-family:‘Inter’,sans-serif;font-weight:500;font-size:0.875rem;
 transition:all 0.18s;text-decoration:none;
 }
-.btn-ghost{background:transparent;color:var(–muted);border:1px solid var(–border)}
-.btn-ghost:hover{background:var(–card);color:#fff;border-color:rgba(255,255,255,0.15)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.3)}
+.btn-ghost:hover{background:rgba(255,255,255,0.08);color:#fff;border-color:rgba(255,255,255,0.5)}
 .btn-primary{background:var(–accent);color:#06070d;font-weight:700}
 .btn-primary:hover{background:#d4f552;transform:translateY(-1px);box-shadow:0 8px 24px rgba(200,240,62,0.3)}
 .btn-dark{background:#fff;color:#06070d;font-weight:700}
@@ -611,9 +611,9 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
 <nav id="global-nav" style="background:#06070d;background:rgba(6,7,13,0.97)">
   <div class="nav-logo" onclick="showPage('landing')"><span>Lead</span>rli</div>
   <ul class="nav-links">
-    <li><a onclick="scrollTo('#features-section')">Features</a></li>
-    <li><a onclick="scrollTo('#how-section')">How It Works</a></li>
-    <li><a onclick="scrollTo('#pricing-section')">Pricing</a></li>
+    <li><a onclick="scrollToSection('#features-section')">Features</a></li>
+    <li><a onclick="scrollToSection('#how-section')">How It Works</a></li>
+    <li><a onclick="scrollToSection('#pricing-section')">Pricing</a></li>
   </ul>
   <div class="nav-right">
     <button class="btn btn-ghost" onclick="showPage('login')">Log In</button>
@@ -642,7 +642,7 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
     <p class="hero-sub fade-up delay-2">Leadrli is your all-in-one workplace intelligence platform — whether you manage a team of 20 or just want to stay on top of your own emails, deadlines, and daily wins. Everyone deserves to show up at their best.</p>
     <div class="hero-actions fade-up delay-3">
       <button class="btn btn-primary btn-xl" onclick="goToStripe('solo')">Start Your 14-Day Free Trial</button>
-      <button class="btn btn-outline btn-xl" onclick="scrollTo('#how-section')">See How It Works</button>
+      <button class="btn btn-outline btn-xl" onclick="scrollToSection('#how-section')">See How It Works</button>
     </div>
     <div class="hero-trust fade-up delay-4">
       <div class="avatars-stack">
@@ -931,8 +931,8 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
       <div style="font-size:0.78rem;color:rgba(255,255,255,0.3)">Work smarter. Lead better. Every single day.</div>
     </div>
     <ul class="footer-links" style="justify-content:center">
-      <li><a onclick="scrollTo('#features-section')">Features</a></li>
-      <li><a onclick="scrollTo('#pricing-section')">Pricing</a></li>
+      <li><a onclick="scrollToSection('#features-section')">Features</a></li>
+      <li><a onclick="scrollToSection('#pricing-section')">Pricing</a></li>
       <li><a onclick="showPage('login')">Log In</a></li>
       <li><a>Privacy</a></li>
       <li><a>Terms</a></li>
@@ -1997,7 +1997,7 @@ window.addEventListener('scroll', () => {
 });
 
 
-function scrollTo(selector) {
+function scrollToSection(selector) {
   document.querySelector(selector)?.scrollIntoView({ behavior:'smooth' });
 }
 
