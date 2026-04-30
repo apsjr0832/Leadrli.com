@@ -67,7 +67,7 @@ transition:background 0.4s ease;
 }
 .nav-logo{
 font-family:‘Plus Jakarta Sans’,sans-serif;
-font-weight:900;font-size:2rem;letter-spacing:-0.5px;
+font-weight:900;font-size:3rem;letter-spacing:-0.5px;
 color:#fff;cursor:pointer;
 white-space:nowrap;
 text-align:center;
@@ -1025,19 +1025,88 @@ footer{flex-direction:column;gap:16px;text-align:center;padding:36px 20px}
         <div class="auth-sub">Already have an account? <a onclick="showPage('login')">Log in →</a></div>
 
 ```
-    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px">Choose your plan</div>
-    <div class="plan-selector" id="plan-selector">
-      <div class="plan-sel selected" onclick="selectPlan('Solo','17',this)">
-        <span class="plan-sel-name">Solo</span>
-        <span class="plan-sel-price">$49/mo</span>
+    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px">Choose your plan — hover to see what's included</div>
+
+    <!-- Rich Plan Selector -->
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px" id="plan-selector">
+
+      <!-- Solo -->
+      <div class="plan-sel selected" id="psel-solo" onclick="selectPlanFull('Solo','49',this)" onmouseenter="expandPlan('solo')" onmouseleave="collapsePlan('solo')" style="border-radius:10px;padding:12px 14px;cursor:pointer;transition:all 0.2s">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(200,240,62,0.15);display:flex;align-items:center;justify-content:center;font-size:1rem">👤</div>
+            <div>
+              <span class="plan-sel-name">Solo</span>
+              <span class="plan-sel-price" style="display:block">$49/mo · Best for individual managers</span>
+            </div>
+          </div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:800;color:var(--accent)" id="psel-solo-check">✓</div>
+        </div>
+        <div id="psel-solo-details" style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);display:none;grid-template-columns:1fr 1fr;gap:4px">
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>Up to 10 direct reports</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>Email follow-up tracking</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>30/60/90 day review alerts</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>AI email drafting</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>Daily morning briefing</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>Focus mode and timer</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>Kudos board</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>Weekly wins tracker</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>Teams, Slack and Email alerts</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#c8f03e;font-weight:700">✓</span>Mood check-in</div>
+        </div>
       </div>
-      <div class="plan-sel" onclick="selectPlan('Team','49',this)">
-        <span class="plan-sel-name">Team</span>
-        <span class="plan-sel-price">$149/mo</span>
+
+      <!-- Team -->
+      <div class="plan-sel" id="psel-team" onclick="selectPlanFull('Team','149',this)" onmouseenter="expandPlan('team')" onmouseleave="collapsePlan('team')" style="border-radius:10px;padding:12px 14px;cursor:pointer;transition:all 0.2s;position:relative">
+        <div style="position:absolute;top:-1px;right:12px;background:var(--accent);color:#06070d;font-size:0.6rem;font-weight:800;padding:2px 8px;border-radius:0 0 6px 6px;letter-spacing:0.06em;text-transform:uppercase">Most Popular</div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(62,139,240,0.15);display:flex;align-items:center;justify-content:center;font-size:1rem">👥</div>
+            <div>
+              <span class="plan-sel-name">Team</span>
+              <span class="plan-sel-price" style="display:block">$149/mo · Up to 10 managers</span>
+            </div>
+          </div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.3)" id="psel-team-check">›</div>
+        </div>
+        <div id="psel-team-details" style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);display:none;grid-template-columns:1fr 1fr;gap:4px">
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>Everything in Solo</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>Up to 10 managers</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>Team analytics dashboard</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>AI manager coaching tips</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>HRIS sync (BambooHR)</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>Manager scorecards</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>HR onboarding tracker</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>Company pulse surveys</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>Priority email support</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#3e8bf0;font-weight:700">✓</span>Retention risk alerts</div>
+        </div>
       </div>
-      <div class="plan-sel" onclick="selectPlan('Company','129',this)">
-        <span class="plan-sel-name">Company</span>
-        <span class="plan-sel-price">$139/mo</span>
+
+      <!-- Company -->
+      <div class="plan-sel" id="psel-company" onclick="selectPlanFull('Company','499',this)" onmouseenter="expandPlan('company')" onmouseleave="collapsePlan('company')" style="border-radius:10px;padding:12px 14px;cursor:pointer;transition:all 0.2s">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(147,51,234,0.15);display:flex;align-items:center;justify-content:center;font-size:1rem">🏢</div>
+            <div>
+              <span class="plan-sel-name">Company</span>
+              <span class="plan-sel-price" style="display:block">$499/mo · Unlimited managers</span>
+            </div>
+          </div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.3)" id="psel-company-check">›</div>
+        </div>
+        <div id="psel-company-details" style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);display:none;grid-template-columns:1fr 1fr;gap:4px">
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>Everything in Team</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>Unlimited managers</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>Director and VP rollup views</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>SSO and admin controls</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>Custom integrations</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>Dedicated success manager</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>SLA support guarantee</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>Advanced HR reports</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>Compliance tracking</div>
+          <div style="font-size:0.72rem;color:rgba(226,224,219,0.7);display:flex;align-items:center;gap:5px"><span style="color:#a855f7;font-weight:700">✓</span>Priority onboarding</div>
+        </div>
       </div>
     </div>
 
@@ -2779,6 +2848,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// ── PLAN SELECTOR EXPAND ─────────────────────────────────────────────────────
+function expandPlan(plan) {
+  const details = document.getElementById('psel-'+plan+'-details');
+  if (details) details.style.display = 'grid';
+}
+function collapsePlan(plan) {
+  const el = document.getElementById('psel-'+plan);
+  if (el && !el.classList.contains('selected')) {
+    const details = document.getElementById('psel-'+plan+'-details');
+    if (details) details.style.display = 'none';
+  }
+}
+const _origSelectPlan = typeof selectPlan !== 'undefined' ? selectPlan : null;
+function selectPlanFull(name, price, el) {
+  ['solo','team','company'].forEach(p => {
+    const card = document.getElementById('psel-'+p);
+    const check = document.getElementById('psel-'+p+'-check');
+    const details = document.getElementById('psel-'+p+'-details');
+    if (card) card.classList.remove('selected');
+    if (check) { check.textContent = '›'; check.style.color = 'rgba(255,255,255,0.3)'; }
+    if (details && p !== name.toLowerCase()) details.style.display = 'none';
+  });
+  const key = name.toLowerCase();
+  const card = document.getElementById('psel-'+key);
+  const check = document.getElementById('psel-'+key+'-check');
+  const details = document.getElementById('psel-'+key+'-details');
+  if (card) card.classList.add('selected');
+  if (check) { check.textContent = '✓'; check.style.color = 'var(--accent)'; }
+  if (details) details.style.display = 'grid';
+  selectedPlan = name;
+}
+
 const prices = {
   monthly: { solo:49, team:149, company:499, soloPeriod:'per manager / month', teamPeriod:'per month · up to 10 managers', companyPeriod:'per month · unlimited managers' },
   yearly:  { solo:39, team:119, company:399, soloPeriod:'per manager / month, billed $468/yr', teamPeriod:'per month, billed $1,428/yr', companyPeriod:'per month, billed $4,788/yr' }
@@ -2814,6 +2915,10 @@ function setBilling(type) {
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
 document.getElementById('m-start').valueAsDate = new Date();
+
+// Show Solo plan details expanded by default
+const _soloDetails = document.getElementById('psel-solo-details');
+if (_soloDetails) _soloDetails.style.display = 'grid';
 
 // Force nav dark on load — belt AND suspenders
 const _nav = document.getElementById('global-nav');
